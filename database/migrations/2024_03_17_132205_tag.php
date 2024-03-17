@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        schema::create('tags', function (Blueprint $table) {
+            $table->id();
+            $table->string(column:'name');
+            $table->string(column:'slug');
+
+            $table->timestamps();
+        });
     }
 
     /**

@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('clicks', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('listing_id'); //foreign key could create constraint
+            $table->string('ip')->nullable();
+            $table->string('user_agent')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('clicks'); 
     }
 };

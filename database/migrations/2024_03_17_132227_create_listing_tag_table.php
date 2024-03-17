@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('listing_tag', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unasignedBigInteger(column:'listing_id');
+            $table->unasignedBigInteger(column:'tag_id');
+
         });
     }
 
