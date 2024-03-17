@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\ListingController::class, 'index'])->name('listing.index');
+Route::get('/job-post', [App\Http\Controllers\ListingController::class, 'index'])->name('job-post.index');
+Route::get('/employers', [App\Http\Controllers\ListingController::class, 'index'])->name('employers.index');
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes(['register' => false]);
 

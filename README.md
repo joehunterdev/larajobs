@@ -4,15 +4,15 @@
 
 ## Models + Migrations
 
-php artisan make:model Listing -m
-php artisan make:model Clicks -m
-php artisan make:model Tag - m
+`php artisan make:model Listing -m`
+`php artisan make:model Clicks -m`
+`php artisan make:model Tag -m`
 
 ## Relationships:
 
-Tags and Listings = many to many uses model names in alfabetical order which is the laravel convention. We will need a pivot table
+- Tags and Listings = many to many uses model names in alfabetical order which is the laravel convention. We will need a pivot table
 
-php artisan make:migration create_listing_tag_table
+`php artisan make:migration create_listing_tag_table`
 
 
 
@@ -20,8 +20,8 @@ php artisan make:migration create_listing_tag_table
 
 ## Factories
 
-php artisan make:factory TagFactory -model=Tag
-laravel_jobsphp artisan make:factory ListingFactory -model=Listing
+- `php artisan make:factory TagFactory -model=Tag`
+- `laravel_jobsphp artisan make:factory ListingFactory -model=Listing`
 
 *for Listing user id relations create a seeder that runs through user creation and passes id*
 
@@ -45,28 +45,49 @@ User::factory(20)->create()->each(function ($user) use ($tags) {
 });
 ```
 
-*attach() is used in many to many*
+- *`attach()` is used in many to many*
 
-load these objects into your seeder 
+- load these objects into your seeder 
 
-## Dependancies 
-composer require laravel/ui --dev
-php artisan ui bootstrap 
-php artisan ui bootstrap --auth
-npm install && npm run dev #compile assets
+## 3. Dependancies 
 
-Auth::routes(); in web.php should be enough for your defaults
-Auth::routes(['register' => false]);// is a way to disable from default
-if we wanted to auth emails we could using  implements MustVerifyEmail
-composer require laravel/cashier
-with billable trait in User Model
+`composer require laravel/ui --dev`
+`php artisan ui bootstrap`
+`php artisan ui bootstrap --auth`
+`npm install && npm run dev` #compile assets
+
+
+- `Auth::routes();` in web.php should be enough for your defaults
+- `Auth::routes(['register' => false]);// ` is a way to disable from default
+- if we wanted to auth emails we could using  implements MustVerifyEmail
+
+`composer require laravel/cashier`
+
+with **Billable** trait in User Model
 then you will need to add stripe key and secret into env
-composer requuire erusev/parsedown-extra
+
+`composer require erusev/parsedown-extra`
+
+
+## 4. Front Page
+- Lets overwrite our default route
+`php artisan make:controller ListingController`
+- return data and view in index 
+
+- in our listing view we can now use our blade components
+- you can now use components and include them with `<x-whatever>`
+- additionally you can use `<x-app-layout>` on your listings index to leverage the existing app layout
+- lets also pull in tags into listing controller
+- `@extend()`
+- `@section() ` in your outer templates
+- inline active can be done like this {{ $tag->slug === request()->get('tag') ? 'btn-primary' : 'btn-secondary' }}
+- `php artisan storage:link`
+- add a search function to pass param s
+- detect this in controller and return
 
 
 ## Notes
 
-`dcr can be used for docker compose run`
-
+- *dcr can be used for docker compose run*
 - homestead is an environment for laravel
 - tailwind may work slighty better with react, slightly better with mobile

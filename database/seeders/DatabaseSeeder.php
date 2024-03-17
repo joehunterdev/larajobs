@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         //Loop through the users and create listings for each user
         //Tags,attach,random 
         User::factory(20)->create()->each(function ($user) use ($tags) {
-            Listing::factory(rand(1, 3))->create(['user_id' => $user->id])->each(function ($listing) use ($tags) {
+            Listing::factory(rand(1, 3))->create(['user_id' => $user->id,])->each(function ($listing) use ($tags) {
                 $listing->tags()->attach($tags->random(rand(1, 3)));
             });
         });

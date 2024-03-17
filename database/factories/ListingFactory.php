@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Carbon\Carbon;
- 
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\odel=Listing>
  */
@@ -25,20 +25,22 @@ class ListingFactory extends Factory
         $content = ''; // lets generate some real html
 
         for ($i = 0; $i < 5; $i++) {
-            $content .= '<p class="mb-4">' . $this->faker->sentences(rand(5,10),asText:true) . '</p>';
+            $content .= '<p class="mb-4">' . $this->faker->sentences(rand(5, 10), asText: true) . '</p>';
         }
         return [
             'title' => $title,
-            'user_id' => User::factory(),//cascade through the user model
-            'slug' => Str::slug($title)."-" . $this->faker->unique()->numberBetween(1, 100),
+            'user_id' => User::factory(), //cascade through the user model
+            'slug' => Str::slug($title) . "-" . $this->faker->unique()->numberBetween(1, 100),
             'company' => $this->faker->company,
             'location' => $this->faker->address,
-            'logo' => basename($this->faker->image(storage_path('app/public'), 100, 100, null, false)),
-            'is_highlighted' => (rand(0,9) > 7 ? true : false),
+            // 'logo' => basename($this->faker->image(storage_path('app/public'),
+            //  width: 640, height: 480, category: 'business',randomize:true)),  
+            'logo' => $this->faker->imageUrl(640, 480, 'business', true),
+            'is_highlighted' => $this->faker->randomElement([true, true, false, false]),
             'is_active' => true,
             'content' => $content,
             'apply_link' => $this->faker->url,
-            'created_at' => $created_at ,
+            'created_at' => $created_at,
             'updated_at' => $created_at->addDays(rand(1, 5)),
         ];
     }
