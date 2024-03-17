@@ -35,3 +35,5 @@ Thumbs.db
 /.env
 /.env.*.local
 /sftp-config.json
+package-lock.json
+composer.lock

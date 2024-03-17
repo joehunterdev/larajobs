@@ -49,8 +49,24 @@ User::factory(20)->create()->each(function ($user) use ($tags) {
 
 load these objects into your seeder 
 
+## Dependancies 
+composer require laravel/ui --dev
+php artisan ui bootstrap 
+php artisan ui bootstrap --auth
+npm install && npm run dev #compile assets
+
+Auth::routes(); in web.php should be enough for your defaults
+Auth::routes(['register' => false]);// is a way to disable from default
+if we wanted to auth emails we could using  implements MustVerifyEmail
+composer require laravel/cashier
+with billable trait in User Model
+then you will need to add stripe key and secret into env
+composer requuire erusev/parsedown-extra
+
+
 ## Notes
 
 `dcr can be used for docker compose run`
 
 - homestead is an environment for laravel
+- tailwind may work slighty better with react, slightly better with mobile
