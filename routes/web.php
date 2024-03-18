@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', [Controllers\ListingController::class, 'index'])->name('listings.index');
+Auth::routes(['register' => false]); //Same as doing /auth.php
 
 Route::get('/new', [Controllers\ListingController::class, 'create'])->name('listing.create');
 

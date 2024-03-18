@@ -115,7 +115,8 @@ then you will need to add stripe key and secret into env
 
 ## 7. Employer Dashboard
 - We now need to pass listing param to view
-- 
+- Logout is actually a post
+
 ## Notes
 
 - *dcr can be used for docker compose run*
