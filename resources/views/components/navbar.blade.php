@@ -53,8 +53,7 @@
                         </li>
                         <!-- Add Post Job Menu Item -->
                         <li class="nav-item">
-                           <a class="nav-link" href="">{{ __('Post Job') }}</a> 
-                        </li>
+                        <a class="nav-link" href="{{ route('listing.create') }}">{{ __('Post Job') }}</a>                        </li>
                     </ul>
                 </div>
             </div>

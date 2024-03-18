@@ -102,6 +102,15 @@ then you will need to add stripe key and secret into env
 
 - Parser.php which browser could be usefull for tracking
 
+## 6. Purchase Listing
+- Include js directly in blade view
+- use $request->validate 
+    - 2 steps allowing for user thats already logged 
+- try catch block
+- hook into stripe and do charge with options
+- Test The Flow
+    - Form requires redirect be weary of configurables
+
 ## Notes
 
 - *dcr can be used for docker compose run*

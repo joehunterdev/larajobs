@@ -14,17 +14,20 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [Controllers\ListingController::class, 'index'])->name('listing.index');
+Route::get('/', [Controllers\ListingController::class, 'index'])->name('listings.index');
 
-Route::get('/{listing}',[Controllers\ListingController::class, 'show'])
-->name('listing.show');
+Route::get('/new', [Controllers\ListingController::class, 'create'])->name('listing.create');
 
-Route::get('/{listing}/apply', [Controllers\ListingController::class, 'apply'])->name('listings.apply');
-
-Route::get('/dashboard',function(){
-     return view('dashboard');
+Route::get('/dashboard', function () {
+     return view('dashboard.index');
 })->middleware('auth')->name('dashboard');
 
+
+Route::get('/{listing}', [Controllers\ListingController::class, 'show'])->name('listing.show');
+
+Route::post('/new', [Controllers\ListingController::class, 'store'])->name('listing.store');
+
+// Route::get('/{listing}/apply', [Controllers\ListingController::class, 'apply'])->name('listing.apply');
 
 //Catch all route
 Auth::routes(['register' => false]); //Same as doing /auth.php

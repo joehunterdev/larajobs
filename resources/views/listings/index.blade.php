@@ -10,7 +10,7 @@
     <div class="container px-4 d-flex justify-content-center flex-wrap">
         
         @foreach($tags as $tag)
-        <a href="{{ route('listing.index', ['tag' => $tag->slug]) }}" class="btn badge bg-secondary  border-solid bg-none m-2 {{ $tag->slug === request()->get('tag') ? 'btn-primary' : 'btn-secondary' }}">#{{ $tag->name }}</a>
+        <a href="{{ route('listings.index', ['tag' => $tag->slug]) }}" class="btn badge bg-secondary  border-solid bg-none m-2 {{ $tag->slug === request()->get('tag') ? 'btn-primary' : 'btn-secondary' }}">#{{ $tag->name }}</a>
         @endforeach
 
     </div>
