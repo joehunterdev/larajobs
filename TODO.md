@@ -104,14 +104,18 @@ then you will need to add stripe key and secret into env
 
 ## 6. Purchase Listing
 - Include js directly in blade view
-- use $request->validate 
+- use `$request->validate `
     - 2 steps allowing for user thats already logged 
 - try catch block
 - hook into stripe and do charge with options
 - Test The Flow
     - Form requires redirect be weary of configurables
-## 7. Employer Dashboard
 
+ - When creating a new listing its done of the user object `$listing = $user->listings()`
+
+## 7. Employer Dashboard
+- We now need to pass listing param to view
+- 
 ## Notes
 
 - *dcr can be used for docker compose run*

@@ -3,6 +3,7 @@
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +19,10 @@ Route::get('/', [Controllers\ListingController::class, 'index'])->name('listings
 
 Route::get('/new', [Controllers\ListingController::class, 'create'])->name('listing.create');
 
-Route::get('/dashboard', function () {
-     return view('dashboard.index');
+Route::get('/dashboard', function (Request $request) {
+     return view('dashboard.index', [
+         'listings' => $request->user()->listings
+     ]);
 })->middleware('auth')->name('dashboard');
 
 

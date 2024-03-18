@@ -38,4 +38,5 @@ Thumbs.db
 /sftp-config.json
 package-lock.json
  
-jobs.joehunter.dev.code-workspace
+/jobs.joehunter.dev.code-workspace
+

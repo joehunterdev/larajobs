@@ -24,8 +24,8 @@
 
             @guest
 
-            <x-form.input name="email" label="Email" type="text" required="true" autofocus />
-            <x-form.input name="name" label="Name" type="text" required="true" autofocus />
+            <x-form.input name="email" label="Email" id="email" type="email" required="true" autofocus />
+            <x-form.input name="name" label="Name" type="text" id="name" required="true" autofocus />
             <hr />
             <x-form.input name="password" label="Password" type="password" required="true" autofocus />
             <x-form.input name="password_confirmation" label="Confirm Password" type="password" required="true" autofocus />

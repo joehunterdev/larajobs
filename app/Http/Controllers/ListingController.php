@@ -171,14 +171,17 @@ class ListingController extends Controller
             //md content
             $md = new ParsedownExtra();
             //$logoPath = $request->file('logo')->storeAs('public', $request->file('logo')->getClientOriginalName());
-
-            $listing = new Listing($request->all(), [
-                'user_id' => $user->id,
-                'slug' => Str::slug($request->title) . rand(111, 999),
-                //'logo' => $logoPath,
+            $listing = $user->listings()
+            ->create([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title) . '-' . rand(1111, 9999),
+                'company' => $request->company,
+                //'logo' => basename($request->file('logo')->store('public')),
+                'location' => $request->location,
+                'apply_link' => $request->apply_link,
+                'content' => $md->text($request->input('content')),
                 'is_highlighted' => $request->filled('is_highlighted'),
-                'is_active' => true,
-                'content' => $md->text($request->content),
+                'is_active' => true
             ]);
 
             foreach (explode(',', $request->tags) as $requestTag) {
@@ -190,6 +193,8 @@ class ListingController extends Controller
                 //sets relationip between tags passed and listing created
                 $tag->listings()->attach($tag);
             }
+            $listing->save();
+
             //\Stripe\PaymentIntent::create($options);
 
             return redirect()->route('dashboard', $listing->slug)->with('success', 'Listing created');
