@@ -18,11 +18,12 @@ class ListingController extends Controller
         $tags = Tag::orderBy('name')->get();
 
         if ($request->has('tag')) {
+            $tag = $request->get('tag');
             $listings = $listings->filter(function ($listing) use ($tag) {
                 return $listing->tags->contains('slug', $tag);
-            )}
-            
+            });
         }
+
 
         if ($request->has("s")) {
 
@@ -60,5 +61,27 @@ class ListingController extends Controller
 
         return view('listings.index', compact('listings', 'tags'));
 
+    }
+
+    //Use Model Binding to get the listing  
+    public function show(Listing $listing, Request $request)
+    {
+       // return $listing;
+        return view('listings.show', compact('listing'));
+    }
+
+    //Create associated click data and redirect
+    public function apply(Listing $listing, Request $request)
+    {
+         $listing->clicks()->create(
+            [
+                'user_agent' => $request->userAgent(),
+                'ip' => $request->ip()
+            ]
+         );
+
+
+         return redirect()->to('home');
+         
     }
 }

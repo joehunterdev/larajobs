@@ -2,7 +2,7 @@
 
 ## Setup db
 
-## Models + Migrations
+## 1. Models + Migrations
 
 `php artisan make:model Listing -m`
 `php artisan make:model Clicks -m`
@@ -85,6 +85,22 @@ then you will need to add stripe key and secret into env
 - add a search function to pass param s
 - detect this in controller and return
 
+- To record clicks lets create a new apply method. and associate clicks with that listing
+
+## 5. Listing page
+
+- Parse to variable route to variable `/{listing}`
+    - Model Route Binding: `public function show(Listing $listing, Request $request)`
+    - Laravel will expect the id of object by default
+- To get round this issue we can modify the model and create a `getRouteKeyName() : slug` on the parent class to *bind the key name to object* this is the col in db
+- `{!!$listing->content!!}`
+
+- To track click we need to create a new controller method, and pass the associated header in `$clicks->create()`
+- Then redirect
+- This needs to be mapped to apply link via route
+- `<a href="{{ route('listings.apply', $listing->slug) }}" class="btn btn-primary">Apply Now</a>`
+
+- Parser.php which browser could be usefull for tracking
 
 ## Notes
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -13,14 +14,20 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [App\Http\Controllers\ListingController::class, 'index'])->name('listing.index');
-Route::get('/job-post', [App\Http\Controllers\ListingController::class, 'index'])->name('job-post.index');
-Route::get('/employers', [App\Http\Controllers\ListingController::class, 'index'])->name('employers.index');
+Route::get('/', [Controllers\ListingController::class, 'index'])->name('listing.index');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/{listing}',[Controllers\ListingController::class, 'show'])
+->name('listing.show');
 
-Auth::routes(['register' => false]);
+Route::get('/{listing}/apply', [Controllers\ListingController::class, 'apply'])->name('listings.apply');
+
+Route::get('/dashboard',function(){
+     return view('dashboard');
+})->middleware('auth')->name('dashboard');
+
+
+//Catch all route
+Auth::routes(['register' => false]); //Same as doing /auth.php
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
