@@ -1,4 +1,4 @@
-# 🚀 Larajobs
+# 💼🔐 Larajobs
 ![Larajobs Example](larajobs-example.png)
 
 The code represents a list of features for a project. These features include individual SEO-friendly listing pages, payment processing through Stripe 💳, user account authentication 🔐, a simple, mobile-friendly layout with Bootstrap, and the use of Laravel 10 and PHP 8.
@@ -21,3 +21,5 @@ The code represents a list of features for a project. These features include ind
 ## 📝 License
 
 This project is licensed under the [MIT License](LICENSE).
+
+![Job Board Icon](job-board-icon.png) 💼

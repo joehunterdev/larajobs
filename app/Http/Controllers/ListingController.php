@@ -134,7 +134,7 @@ class ListingController extends Controller
         }
         //Hook into billable
         $user->createAsStripeCustomer();
-
++
         //Auth user
         Auth::login($user);
 
